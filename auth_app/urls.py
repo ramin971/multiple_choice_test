@@ -12,6 +12,6 @@ urlpatterns = [
     path('o/', include(oauth2_urls)),
     path('', include(router.urls)),
     # Google OAuth
-    path('auth/google/init/', GoogleAuthInit.as_view(), name="google-init"),
-    path('auth/google/callback/', GoogleAuthCallback.as_view(), name="google-callback"),
+    path('google/init/', GoogleAuthInit.as_view(), name="google-init"),
+    path('google/callback/', GoogleAuthCallback.as_view(), name="google-callback"),
 ]

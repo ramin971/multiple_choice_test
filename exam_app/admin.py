@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms.models import BaseInlineFormSet
 from django.core.exceptions import ValidationError
-from .models import Question, Answer
+from .models import Question, Answer, Tag
 
 class AnswerInlineFormset(BaseInlineFormSet):
     def clean(self):
@@ -20,7 +20,13 @@ class AnswerInline(admin.TabularInline):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ("id", "text", "tag")
+    list_display = ("id", "tag")
     search_fields = ("text", "tag")
     list_filter = ("tag",)
     inlines = [AnswerInline]
+    autocomplete_fields = ['tag']
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
